@@ -2,8 +2,6 @@ package com.example.textreccy
 
 import android.content.Intent
 import android.graphics.Bitmap
-import android.hardware.camera2.CaptureRequest
-import android.hardware.camera2.CaptureRequest.*
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
@@ -21,7 +19,7 @@ import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer
 
 class MainActivity : AppCompatActivity() {
     lateinit var cameraButton : Button
-    private val REQUEST_CAMERA_CAPTURE = 124 //private final static int REQUEST_CAMERA_CAPTURE = 124
+    private val REQUEST_CAMERA_CAPTURE = 124
     lateinit var textRecogizer : FirebaseVisionTextRecognizer
     lateinit var image : FirebaseVisionImage
 
@@ -29,18 +27,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //mImageReader = ImageReader.newInstance(pictureSizeValue.getWidth(), pictureSizeValue.getHeight(), format, maxImages);
-
         setContentView(R.layout.activity_main)
 
         FirebaseApp.initializeApp(this)
 
-        cameraButton = findViewById(R.id.camera_button) //ToDo: activity_main xml replacement
+        cameraButton = findViewById(R.id.camera_button)
 
         cameraButton.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
                 var takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                if (takePictureIntent.resolveActivity(packageManager) != null) { //getPackageManager()
+                if (takePictureIntent.resolveActivity(packageManager) != null) {
                     startActivityForResult(takePictureIntent, REQUEST_CAMERA_CAPTURE)
                 }
             }})
@@ -50,11 +46,7 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CAMERA_CAPTURE && resultCode == RESULT_OK){
 
-//            lateinit var mCaptureRequestBuilder : Builder
-//            mCaptureRequestBuilder.createCaptureRequest(2)
-//            mCaptureRequestBuilder.set(CaptureRequest.JPEG_QUALITY, 100.toByte())
-
-            var extras = data?.extras //Bundle extras = data.getExtras();
+            var extras = data?.extras
             var bitmap = extras?.get("data") as Bitmap
             recognizeMyText(bitmap)
         }
@@ -70,6 +62,7 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
         }
 
+        //TODO: Need to find a way to keep the image clear
         textRecogizer.processImage(image)
             .addOnSuccessListener(object: OnSuccessListener<FirebaseVisionText> {
                 override fun onSuccess(firebaseVisionText: FirebaseVisionText) {
@@ -78,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                     if (resultText.isEmpty()) {
                         Toast.makeText(this@MainActivity, "NO TEXT DETECTED", Toast.LENGTH_SHORT).show()
                     } else {
-                        val intent = Intent(this@MainActivity,ResultActivity::class.java) // new Intent(this, ResultActivity.class)
+                        val intent = Intent(this@MainActivity,ResultActivity::class.java)
                         intent.putExtra(LCOTextRecognition.RESULT_TEXT, resultText)
                         startActivity(intent)
                     }
