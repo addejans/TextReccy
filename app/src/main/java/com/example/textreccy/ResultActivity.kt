@@ -17,9 +17,9 @@ class ResultActivity : AppCompatActivity() {
 
         resultTextView = findViewById(R.id.result_textview)
         backButton = findViewById(R.id.back_button)
-        resultText = this.intent.getStringExtra(LCOTextRecognition.RESULT_TEXT) //resultText = getIntent().getStringExtra(LCOTextRecognition.RESULT_TEXT)
+        resultText = this.intent.getStringExtra(LCOTextRecognition.RESULT_TEXT)
 
-        resultTextView.text = (resultText) //resultTextView.setText(resultText)
+        resultTextView.text = (resultText)
 
         backButton.setOnClickListener(object: View.OnClickListener {
             override fun onClick(v : View) {
