@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
         }
 
+        //TODO: Need to find a way to keep the image clear
         textRecogizer.processImage(image)
             .addOnSuccessListener(object: OnSuccessListener<FirebaseVisionText> {
                 override fun onSuccess(firebaseVisionText: FirebaseVisionText) {
