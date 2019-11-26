@@ -20,7 +20,7 @@ import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer
 
 
 class MainActivity : AppCompatActivity() {
-
+    //testing this stuff
     lateinit var cameraButton : Button
     private val REQUEST_CAMERA_CAPTURE = 124 //private final static int REQUEST_CAMERA_CAPTURE = 124
     lateinit var textRecogizer : FirebaseVisionTextRecognizer
