@@ -1,9 +1,6 @@
 # TextReccy
 This is an app used to read text from a captured image.
 
-### Notes
- - Implemented using Firebase ML Model
-
 
 ### Screenshots
 <table>
@@ -20,3 +17,10 @@ This is an app used to read text from a captured image.
   <td><img src="screenshots/Screenshot_20191125-220659_TextReccy.jpg" alt="drawing" width="200"/></td>
  </tr>
 </table>
+
+
+### Notes
+ - Implemented using Firebase ML Model
+ 
+##### Other References
+ - https://firebase.google.com/docs/ml-kit/recognize-text
